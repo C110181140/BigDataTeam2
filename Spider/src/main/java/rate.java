@@ -4,10 +4,13 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.util.*;
 
 public class rate {
+
     public static void main(String[] args) throws IOException {
         try {
+            List<String> RateList = new ArrayList<String>();
             Document doc = Jsoup.connect("https://www.firstbank.com.tw/sites/fcb/ForExRatesInquiry").get();
             // 根據class獲取table
             Elements table = doc.getElementsByClass("table");
@@ -30,10 +33,12 @@ public class rate {
                         //獲取文字資訊
                         String text = td2.text();
                         //輸出到控制檯
-                        System.out.println(text);
+                        RateList.add(text);
                     }
                 }
             }
+            System.out.println(RateList);
+            Date.GetDate();
         } catch (Exception e) {
         }
     }
