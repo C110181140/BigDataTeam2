@@ -37,45 +37,50 @@ public class Homework {
             System.out.println("輸入錯誤,請重新輸入：");
             Currency = input.nextLine();
         }
+        System.out.println("你輸入的是"+Currency);
 
-
+        String a = "";
         //選擇類別
         System.out.println("請選擇一種類別：" + "\n");
         System.out.println("A:即期");
         System.out.println("B:現鈔" + "\n");
         category = input.nextLine();
         if (category.equals("A")){
+            a = "即期";
         }else if (category.equals("B")){
+            a = "現鈔";
         }else{
             System.out.println("輸入錯誤,請重新輸入：");
             category = input.nextLine();
         }
-
+        System.out.println("你輸入的是" + a);
 
         //選擇買入、賣出
+        String b = "";
         System.out.println("請選擇一種方式：" + "\n");
         System.out.println("A:買入");
         System.out.println("B:賣出" + "\n");
         BAS = input.nextLine();
         if (BAS.equals("A")){
+            b = "買入";
         }else if (BAS.equals("B")){
+            b = "賣出";
         }else{
             System.out.println("輸入錯誤,請重新輸入：");
             BAS = input.nextLine();
         }
+        System.out.println("你輸入的是" + b);
 
         //輸入數字
         System.out.println("輸入要計算的數字：" + "\n");
         math = input.nextLine();
         boolean isNumeric =  math.matches("[+-]?\\d*(\\.\\d+)?");
-        System.out.println(isNumeric);
+//        System.out.println(isNumeric);
         if (isNumeric == true){
         }else if(isNumeric == false){
             System.out.println("請重新輸入有效的數值：");
             math = input.nextLine();
         }
-
-
 
         judge = category + BAS;
 
@@ -107,30 +112,37 @@ public class Homework {
         }
         System.out.println(RateList);
         Date.GetDate();
-        String a = "";
-        int b= RateList.indexOf(Currency);
-        System.out.println(b);
-        System.out.println(judge);
+        String rate = "";
+//        int b= RateList.indexOf(Currency);
+//        System.out.println(b);
+//        System.out.println(judge);
 
         //找出對應的值
         switch (judge){
-            case"AA":
-                a = RateList.get(RateList.indexOf(Currency)+2);
-                System.out.println(a);
+            case"AA"://即期買入
+                rate = RateList.get(RateList.indexOf(Currency)+2);
+                System.out.println(Currency+"即期買入價:"+rate + "\n");
                 break;
-            case"AB":
-                a = RateList.get(RateList.indexOf(Currency)+3);
-                System.out.println(a);
+            case"AB"://即期買出
+                rate = RateList.get(RateList.indexOf(Currency)+3);
+                System.out.println(Currency+"即期買出價:"+rate + "\n");
                 break;
-            case"BA":
-                a = RateList.get(RateList.indexOf(Currency)+6);
-                System.out.println(a);
+            case"BA"://現鈔買入
+                rate = RateList.get(RateList.indexOf(Currency)+6);
+                System.out.println(Currency+"現鈔買入價:"+rate + "\n");
                 break;
-            case"BB":
-                a = RateList.get(RateList.indexOf(Currency)+7);
-                System.out.println(a);
+            case"BB"://現鈔買出
+                rate = RateList.get(RateList.indexOf(Currency)+7);
+                System.out.println(Currency+"現鈔買出價:"+rate + "\n");
                 break;
         }
+
+        //計算過程
+        double ans;//答案
+        double maths = Double.parseDouble(math);//輸入數字
+        double rates = Double.parseDouble(rate);//輸入匯率
+        ans = maths * rates;
+        System.out.println("計算結果:"+ans);//輸出結過
 
     }
 }
