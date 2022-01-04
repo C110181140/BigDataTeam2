@@ -117,15 +117,19 @@ public class Homework {
             case"AA":
                 a = RateList.get(RateList.indexOf(Currency)+2);
                 System.out.println(a);
+                break;
             case"AB":
                 a = RateList.get(RateList.indexOf(Currency)+3);
                 System.out.println(a);
+                break;
             case"BA":
                 a = RateList.get(RateList.indexOf(Currency)+6);
                 System.out.println(a);
+                break;
             case"BB":
                 a = RateList.get(RateList.indexOf(Currency)+7);
                 System.out.println(a);
+                break;
         }
 
     }
