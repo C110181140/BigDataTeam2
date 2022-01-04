@@ -82,7 +82,7 @@ public class Homework {
             math = input.nextLine();
         }
 
-        judge = category + BAS;
+        judge = category + BAS;//判斷
 
         Document doc = Jsoup.connect("https://www.firstbank.com.tw/sites/fcb/ForExRatesInquiry").get();
         // 根據class獲取table
@@ -112,7 +112,7 @@ public class Homework {
         }
         System.out.println(RateList);
         Date.GetDate();
-        String rate = "";
+        String rate = "";//匯率
 //        int b= RateList.indexOf(Currency);
 //        System.out.println(b);
 //        System.out.println(judge);
