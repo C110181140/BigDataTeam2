@@ -30,15 +30,15 @@ public class Homework {
         while (true) {
             if (Currency.equals("A")) {
                 Currency = "美金(USD)";
-                System.out.println("你輸入的是" + Currency);
+                System.out.println("你輸入的是" + Currency +"\n");
                 break;
             } else if (Currency.equals("B")) {
                 Currency = "英鎊(GBP)";
-                System.out.println("你輸入的是" + Currency);
+                System.out.println("你輸入的是" + Currency +"\n");
                 break;
             } else if (Currency.equals("C")) {
                 Currency = "港幣(HKD)";
-                System.out.println("你輸入的是" + Currency);
+                System.out.println("你輸入的是" + Currency +"\n");
                 break;
             } else {
                 System.out.println("輸入錯誤,請重新輸入：");
@@ -56,11 +56,11 @@ public class Homework {
         while (true) {
             if (category.equals("A")) {
                 a = "即期";
-                System.out.println("你輸入的是" + a);
+                System.out.println("你輸入的是" + a +"\n");
                 break;
             } else if (category.equals("B")) {
                 a = "現鈔";
-                System.out.println("你輸入的是" + a);
+                System.out.println("你輸入的是" + a + "\n");
                 break;
             } else {
                 System.out.println("輸入錯誤,請重新輸入：");
@@ -76,11 +76,11 @@ public class Homework {
             while (true) {
             if (BAS.equals("A")) {
                 b = "買入";
-                System.out.println("你輸入的是" + b);
+                System.out.println("你輸入的是" + b +"\n");
                 break;
             } else if (BAS.equals("B")) {
                 b = "賣出";
-                System.out.println("你輸入的是" + b);
+                System.out.println("你輸入的是" + b +"\n");
                 break;
             } else {
                 System.out.println("輸入錯誤,請重新輸入：");
@@ -89,7 +89,7 @@ public class Homework {
         }
 
             //輸入數字
-            System.out.println("輸入要計算的數字：" + "\n");
+            System.out.println("請輸入數字：" + "\n");
             math = input.nextLine();
             while (true) {
             boolean isNumeric = math.matches("[+-]?\\d*(\\.\\d+)?");
@@ -102,6 +102,7 @@ public class Homework {
                 math = input.nextLine();
             }
         }
+        System.out.println("輸出的數字是：" + math + "\n");
             judge = category + BAS;//判斷
             Document doc = Jsoup.connect("https://www.firstbank.com.tw/sites/fcb/ForExRatesInquiry").get();
             // 根據class獲取table
@@ -161,6 +162,7 @@ public class Homework {
             double maths = Double.parseDouble(math);//輸入數字
             double rates = Double.parseDouble(rate);//輸入匯率
             ans = maths * rates;
+            System.out.println("輸出的是:"+Currency+ a + b);
             System.out.println("計算結果:" + ans);//輸出結過
 
         }
