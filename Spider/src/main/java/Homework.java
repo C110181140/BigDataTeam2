@@ -17,72 +17,7 @@ public class Homework {
         String judge;//判斷如何找出需要的資料
         List<String> RateList = new ArrayList<>();//建立陣列
 
-        //選擇一種幣別
-        System.out.println("請選擇一種幣別：" + "\n");
-        System.out.println("A:美金(USD)");
-        System.out.println("B:英鎊(GBP)");
-        System.out.println("C:港幣(HKD)" + "\n");
-        Currency = input.nextLine();//獲取輸入的幣別選擇
-        switch (Currency) {
-            case "A":
-                Currency = "美金(USD)";
-                break;
-            case "B":
-                Currency = "英鎊(GBP)";
-                break;
-            case "C":
-                Currency = "港幣(HKD)";
-                break;
-            default:
-                System.out.println("輸入錯誤,請重新輸入：");
-                Currency = input.nextLine();
-                break;
-        }
-        System.out.println("你輸入的是"+Currency);
 
-        String a = "";
-        //選擇類別
-        System.out.println("請選擇一種類別：" + "\n");
-        System.out.println("A:即期");
-        System.out.println("B:現鈔" + "\n");
-        category = input.nextLine();
-        if (category.equals("A")){
-            a = "即期";
-        }else if (category.equals("B")){
-            a = "現鈔";
-        }else{
-            System.out.println("輸入錯誤,請重新輸入：");
-            category = input.nextLine();
-        }
-        System.out.println("你輸入的是" + a);
-
-        //選擇買入、賣出
-        String b = "";
-        System.out.println("請選擇一種方式：" + "\n");
-        System.out.println("A:買入");
-        System.out.println("B:賣出" + "\n");
-        BAS = input.nextLine();
-        if (BAS.equals("A")){
-            b = "買入";
-        }else if (BAS.equals("B")){
-            b = "賣出";
-        }else{
-            System.out.println("輸入錯誤,請重新輸入：");
-            BAS = input.nextLine();
-        }
-        System.out.println("你輸入的是" + b);
-
-        //輸入數字
-        System.out.println("輸入要計算的數值(新台幣)：" + "\n");
-        math = input.nextLine();
-        boolean isNumeric =  math.matches("[+-]?\\d*(\\.\\d+)?");
-//        System.out.println(isNumeric);
-        if (!isNumeric){
-            System.out.println("請重新輸入有效的數值(新台幣)：");
-            math = input.nextLine();
-        }
-
-        judge = category + BAS;//判斷
 
         Document doc = Jsoup.connect("https://www.firstbank.com.tw/sites/fcb/ForExRatesInquiry").get();
         // 根據class獲取table
@@ -113,32 +48,116 @@ public class Homework {
 //        System.out.println(b);
 //        System.out.println(judge);
 
-        //找出對應的值
-        switch (judge){
-            case"AA"://即期買入
-                rate = RateList.get(RateList.indexOf(Currency)+2);
-                System.out.println(Currency+"即期買入價:"+rate + "\n");
+
+        //選擇一種幣別
+        System.out.println("請選擇一種幣別：" + "\n");
+        System.out.println("A:美金(USD)");
+        System.out.println("B:英鎊(GBP)");
+        System.out.println("C:港幣(HKD)" + "\n");
+        Currency = input.nextLine();//獲取輸入的幣別選擇
+        while (true) {
+            if (Currency.equals("A")) {
+                Currency = "美金(USD)";
+                System.out.println("你輸入的是" + Currency);
                 break;
-            case"AB"://即期買出
-                rate = RateList.get(RateList.indexOf(Currency)+3);
-                System.out.println(Currency+"即期買出價:"+rate + "\n");
+            } else if (Currency.equals("B")) {
+                Currency = "英鎊(GBP)";
+                System.out.println("你輸入的是" + Currency);
                 break;
-            case"BA"://現鈔買入
-                rate = RateList.get(RateList.indexOf(Currency)+6);
-                System.out.println(Currency+"現鈔買入價:"+rate + "\n");
+            } else if (Currency.equals("C")) {
+                Currency = "港幣(HKD)";
+                System.out.println("你輸入的是" + Currency);
                 break;
-            case"BB"://現鈔買出
-                rate = RateList.get(RateList.indexOf(Currency)+7);
-                System.out.println(Currency+"現鈔買出價:"+rate + "\n");
-                break;
+            } else {
+                System.out.println("輸入錯誤,請重新輸入：");
+                Currency = input.nextLine();
+            }
         }
 
-        //計算過程
-        double ans;//答案
-        double maths = Double.parseDouble(math);//輸入數字
-        double rates = Double.parseDouble(rate);//輸入匯率
-        ans = maths * rates;
-        System.out.println("計算結果:"+ans);//輸出結過
+            String a = "";
+            //選擇類別
+            System.out.println("請選擇一種類別：" + "\n");
+            System.out.println("A:即期");
+            System.out.println("B:現鈔" + "\n");
+            category = input.nextLine();
+            while (true) {
+                if (category.equals("A")) {
+                    a = "即期";
+                    System.out.println("你輸入的是" + a);
+                    break;
+                } else if (category.equals("B")) {
+                    a = "現鈔";
+                    System.out.println("你輸入的是" + a);
+                    break;
+                } else {
+                    System.out.println("輸入錯誤,請重新輸入：");
+                    category = input.nextLine();
+                }
+
+            }
+            //選擇買入、賣出
+            String b = "";
+            System.out.println("請選擇一種方式：" + "\n");
+            System.out.println("A:買入");
+            System.out.println("B:賣出" + "\n");
+            BAS = input.nextLine();
+            while (true) {
+                if (BAS.equals("A")) {
+                    b = "買入";
+                    System.out.println("你輸入的是" + b);
+                    break;
+                } else if (BAS.equals("B")) {
+                    b = "賣出";
+                    System.out.println("你輸入的是" + b);
+                    break;
+                } else {
+                    System.out.println("輸入錯誤,請重新輸入：");
+                    BAS = input.nextLine();
+                }
+
+            }
+            //輸入數字
+            System.out.println("輸入要計算的數值" + (Currency) + "：" + "\n");
+            math = input.nextLine();
+            boolean isNumeric = math.matches("[+-]?\\d*(\\.\\d+)?");
+//        System.out.println(isNumeric);
+            while (true) {
+                if (isNumeric == true) {
+                    break;
+                } else if (isNumeric == false) {
+                    System.out.println("請重新輸入有效的數值：");
+                    math = input.nextLine();
+                }
+            }
+            judge = category + BAS;//判斷
+                //找出對應的值
+                switch (judge) {
+                    case "AA"://即期買入
+                        rate = RateList.get(RateList.indexOf(Currency) + 2);
+                        System.out.println(Currency + "即期買入價:" + rate + "\n");
+                        break;
+                    case "AB"://即期買出
+                        rate = RateList.get(RateList.indexOf(Currency) + 3);
+                        System.out.println(Currency + "即期買出價:" + rate + "\n");
+                        break;
+                    case "BA"://現鈔買入
+                        rate = RateList.get(RateList.indexOf(Currency) + 6);
+                        System.out.println(Currency + "現鈔買入價:" + rate + "\n");
+                        break;
+                    case "BB"://現鈔買出
+                        rate = RateList.get(RateList.indexOf(Currency) + 7);
+                        System.out.println(Currency + "現鈔買出價:" + rate + "\n");
+                        break;
+                }
+
+
+
+                //計算過程
+                double ans;//答案
+                double maths = Double.parseDouble(math);//輸入數字
+                double rates = Double.parseDouble(rate);//輸入匯率
+                ans = maths * rates;
+                System.out.println("計算結果:" + ans);//輸出結過
 
     }
 }
