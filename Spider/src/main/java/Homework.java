@@ -4,22 +4,18 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.lang.invoke.SwitchPoint;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Queue;
-import java.util.Scanner;//匯入java.util包下的Scanner類，以讀取來自System.in的輸入
+import java.util.*;//匯入java.util包下的Scanner類，以讀取來自System.in的輸入
 public class Homework {
     public static void main(String[] args) throws IOException {
 
         Scanner input = new Scanner(System.in);//建立一個Scanner物件input
 
-        String Currency = "";//幣別
-        String category = "";//即期、現鈔
-        String BAS = "";//買入、賣出
-        String math = "";//輸入數字
-        String judge = "";//判斷如何找出需要的資料
-        List<String> RateList = new ArrayList<String>();//建立陣列
+        String Currency;//幣別
+        String category;//即期、現鈔
+        String BAS;//買入、賣出
+        String math;//輸入數字
+        String judge;//判斷如何找出需要的資料
+        List<String> RateList = new ArrayList<>();//建立陣列
 
         //選擇一種幣別
         System.out.println("請選擇一種幣別：" + "\n");
@@ -27,15 +23,20 @@ public class Homework {
         System.out.println("B:英鎊(GBP)");
         System.out.println("C:港幣(HKD)" + "\n");
         Currency = input.nextLine();//獲取輸入的幣別選擇
-        if (Currency.equals("A")){
-            Currency = "美金(USD)";
-        }else if (Currency.equals("B")){
-            Currency = "英鎊(GBP)";
-        }else if (Currency.equals("C")) {
-            Currency = "港幣(HKD)";
-        }else{
-            System.out.println("輸入錯誤,請重新輸入：");
-            Currency = input.nextLine();
+        switch (Currency) {
+            case "A":
+                Currency = "美金(USD)";
+                break;
+            case "B":
+                Currency = "英鎊(GBP)";
+                break;
+            case "C":
+                Currency = "港幣(HKD)";
+                break;
+            default:
+                System.out.println("輸入錯誤,請重新輸入：");
+                Currency = input.nextLine();
+                break;
         }
         System.out.println("你輸入的是"+Currency);
 
@@ -76,8 +77,7 @@ public class Homework {
         math = input.nextLine();
         boolean isNumeric =  math.matches("[+-]?\\d*(\\.\\d+)?");
 //        System.out.println(isNumeric);
-        if (isNumeric == true){
-        }else if(isNumeric == false){
+        if (!isNumeric){
             System.out.println("請重新輸入有效的數值(新台幣)：");
             math = input.nextLine();
         }
@@ -90,19 +90,16 @@ public class Homework {
         // 使用選擇器選擇該table內所有的<tr> <tr/>
         Elements trs = table.select("tr");
         //遍歷該表格內的所有的<tr> <tr/>
-        for (int i = 0; i < trs.size(); ++i) {
+        for (Element tr : trs) {
             // 獲取一個tr
-            Element tr = trs.get(i);
             // 獲取該行的所有td節點
             Elements tds = tr.select("td");
             // 選擇某一個td節點
-            for (int j = 0; j < tds.size(); ++j) {
-                Element td = tds.get(j);
+            for (Element td : tds) {
                 // 獲取td節點的所有子td
                 Elements td1 = td.select("td");
                 // 選擇一個子td
-                for (int k = 0; k < td1.size(); k++) {
-                    Element td2 = td1.get(k);
+                for (Element td2 : td1) {
                     //獲取文字資訊
                     String text = td2.text();
                     //輸出到控制檯

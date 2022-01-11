@@ -14,8 +14,7 @@ public class Date {
                 System.out.println(LastDate);
             }
         }
-        catch(Exception e) {
-            System.out.println(e);
+        catch(Exception ignored) {
         }
     }
 }
