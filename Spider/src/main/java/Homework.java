@@ -91,7 +91,6 @@ public class Homework {
         Elements trs = table.select("tr");
         //遍歷該表格內的所有的<tr> <tr/>
         for (Element tr : trs) {
-            // 獲取一個tr
             // 獲取該行的所有td節點
             Elements tds = tr.select("td");
             // 選擇某一個td節點
