@@ -17,7 +17,7 @@ public class Homework {
         String judge;//判斷如何找出需要的資料
         List<String> RateList = new ArrayList<>();//建立陣列
 
-
+        Date.GetDate();
 
         Document doc = Jsoup.connect("https://www.firstbank.com.tw/sites/fcb/ForExRatesInquiry").get();
         // 根據class獲取table
@@ -55,26 +55,29 @@ public class Homework {
         System.out.println("B:英鎊(GBP)");
         System.out.println("C:港幣(HKD)" + "\n");
         Currency = input.nextLine();//獲取輸入的幣別選擇
+        label:
         while (true) {
-            if (Currency.equals("A")) {
-                Currency = "美金(USD)";
-                System.out.println("你輸入的是" + Currency);
-                break;
-            } else if (Currency.equals("B")) {
-                Currency = "英鎊(GBP)";
-                System.out.println("你輸入的是" + Currency);
-                break;
-            } else if (Currency.equals("C")) {
-                Currency = "港幣(HKD)";
-                System.out.println("你輸入的是" + Currency);
-                break;
-            } else {
-                System.out.println("輸入錯誤,請重新輸入：");
-                Currency = input.nextLine();
+            switch (Currency) {
+                case "A":
+                    Currency = "美金(USD)";
+                    System.out.println("你輸入的是" + Currency);
+                    break label;
+                case "B":
+                    Currency = "英鎊(GBP)";
+                    System.out.println("你輸入的是" + Currency);
+                    break label;
+                case "C":
+                    Currency = "港幣(HKD)";
+                    System.out.println("你輸入的是" + Currency);
+                    break label;
+                default:
+                    System.out.println("輸入錯誤,請重新輸入：");
+                    Currency = input.nextLine();
+                    break;
             }
         }
 
-            String a = "";
+        String a;
             //選擇類別
             System.out.println("請選擇一種類別：" + "\n");
             System.out.println("A:即期");
@@ -96,7 +99,7 @@ public class Homework {
 
             }
             //選擇買入、賣出
-            String b = "";
+            String b;
             System.out.println("請選擇一種方式：" + "\n");
             System.out.println("A:買入");
             System.out.println("B:賣出" + "\n");
@@ -122,9 +125,9 @@ public class Homework {
             boolean isNumeric = math.matches("[+-]?\\d*(\\.\\d+)?");
 //        System.out.println(isNumeric);
             while (true) {
-                if (isNumeric == true) {
+                if (isNumeric) {
                     break;
-                } else if (isNumeric == false) {
+                } else {
                     System.out.println("請重新輸入有效的數值：");
                     math = input.nextLine();
                 }
@@ -157,6 +160,8 @@ public class Homework {
                 double maths = Double.parseDouble(math);//輸入數字
                 double rates = Double.parseDouble(rate);//輸入匯率
                 ans = maths * rates;
+
+                Date.showDate();
                 System.out.println("計算結果:" + ans);//輸出結過
 
     }
